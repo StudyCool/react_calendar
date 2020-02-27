@@ -1,0 +1,70 @@
+[
+  {
+    "date": "2020-02-29",
+    "events": [
+      {
+        "name": "Event Name",
+        "body": "Event Body",
+        "time": "12:00",
+        "isIn": false
+      },
+      {
+        "name": "Event Name",
+        "body": "Event Body",
+        "time": "16:30",
+        "isIn": true
+      }
+    ]
+  },
+  {
+    "date": "2020-02-19",
+    "events": [
+      {
+        "name": "Event Name",
+        "body": "Event Body",
+        "time": "12:00",
+        "isIn": false
+      },
+      {
+        "name": "Event Name",
+        "body": "Event Body",
+        "time": "16:30",
+        "isIn": true
+      }
+    ]
+  },
+  {
+    "date": "2020-02-29",
+    "events": [
+      {
+        "name": "Event Name",
+        "body": "Event Body",
+        "time": "12:00",
+        "isIn": false
+      },
+      {
+        "name": "Event Name",
+        "body": "Event Body",
+        "time": "16:30",
+        "isIn": true
+      }
+    ]
+  },
+  {
+    "date": "2020-02-29",
+    "events": [
+      {
+        "name": "Event Name",
+        "body": "Event Body",
+        "time": "12:00",
+        "isIn": false
+      },
+      {
+        "name": "Event Name",
+        "body": "Event Body",
+        "time": "16:30",
+        "isIn": true
+      }
+    ]
+  }
+]

@@ -1,10 +1,30 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styles from './Date.module.css';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-class Date extends Component {
-  constructor (props) {
-    super(props);
+const EventItem = props => {
+  const { event: { isIn } } = props;
+  return <li className={classNames(styles.event, { [styles.inEvent]: isIn })}/>;
+};
+
+EventItem.propTypes = {
+  event: PropTypes.shape({
+                           isIn: PropTypes.bool.isRequired,
+                         })
+};
+
+const Date = (props) => {
+  return <div> {
+    date
   }
-}
+    <ul>
+      <EventItem/>
+      <EventItem/>
+      <EventItem/>
+    </ul>
+
+  </div>;
+};
 
 export default Date;
