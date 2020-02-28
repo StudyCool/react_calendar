@@ -1,0 +1,35 @@
+.container {
+    position: relative;
+    background-color: var(--dark-blue-color);
+    text-transform: uppercase;
+}
+
+.navContainer {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navItem {
+    color: var(--tiffany-color);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 14px;
+}
+
+.currentItem {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 20px;
+}
+
+.downMenu {
+    padding: 7px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: inherit;
+}

@@ -1,6 +1,7 @@
 .calendarHeader{
     background-color: var(--dark-blue-color);
     display: flex;
+    color: white;
 }
 
 .shortWeekDays {

@@ -9,13 +9,13 @@ class Calendar extends Component {
 
   renderWeekDayShort = () => {
     let weekDayShort = moment.weekdaysShort();
-    console.log(weekDayShort);
+    //console.log(weekDayShort);
     let weekDayShortName = weekDayShort.map(day => {
       console.log({ day });
       return (
-        <ol className={styles.shortWeekDays} key={day}>
-          {day}
-        </ol>
+        <th className={styles.shortWeekDays} key={day}>
+          {this.weekDayShortName}
+        </th>
       );
     });
   }
@@ -23,9 +23,15 @@ class Calendar extends Component {
   render () {
     return (
       <div className={styles.calendarHeader}>
-        {
-          this.renderWeekDayShort()
-        }
+        CALENDAR
+        <table>
+
+            {
+              this.renderWeekDayShort()
+            }
+
+        </table>
+
       </div>
   );
   }
