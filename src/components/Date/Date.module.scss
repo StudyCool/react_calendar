@@ -1,9 +1,10 @@
+@import "src/components/styles/modules/color_variables";
 .inEvent{
-   border-bottom: 1px solid var(--tiffany-color);
+   border-bottom: 1px solid $tiffany-color;
 }
 
 .notInEvent{
-    background-color: var(--dark-blue-color);
+    background-color: $dark-blue-color;
     border-radius: 6px;
     opacity: 0.25;
     width: 24px;
@@ -11,9 +12,8 @@
 }
 
 .selectedDate{
-    background-color: var(--dark-blue-color);
+    background-color: $dark-blue-color;
     color: white;
-    font-family: Montserrat;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: -0.28px;

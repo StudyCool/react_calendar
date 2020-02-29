@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import styles from './Week.module.css';
+import styles from './Week.module.scss';
 
 class Week extends Component {
   constructor (props) {

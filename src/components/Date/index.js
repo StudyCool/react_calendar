@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './Date.module.css';
+import styles from './Date.module.scss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 

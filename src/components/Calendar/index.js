@@ -1,40 +1,40 @@
-import React, { Component } from 'react';
-import styles from './Calendar.module.css';
+import React, {Component} from 'react';
+import styles from './Calendar.module.scss';
 import moment from 'moment';
 
 class Calendar extends Component {
-  constructor (props) {
-    super(props);
-  }
+    constructor(props) {
+        super(props);
+    }
 
-  renderWeekDayShort = () => {
-    let weekDayShort = moment.weekdaysShort();
-    //console.log(weekDayShort);
-    let weekDayShortName = weekDayShort.map(day => {
-      console.log({ day });
-      return (
-        <th className={styles.shortWeekDays} key={day}>
-          {this.weekDayShortName}
-        </th>
-      );
-    });
-  }
+    state = {
+        currentMonth: new Date(),
+        selectedDate: new Date()
+    };
+    onDateClick = day => {}
 
-  render () {
-    return (
-      <div className={styles.calendarHeader}>
-        CALENDAR
-        <table>
+    renderWeekDayShort = () => {
+        const weekDayShort = moment.weekdaysMin();
+        const listWeekDays = weekDayShort.map((dayOfWeek) =>
+           <td key={dayOfWeek} className={styles.calendarHeader}>
+                {dayOfWeek.charAt(0)}
+            </td>)
 
-            {
-              this.renderWeekDayShort()
-            }
+        return listWeekDays;
+    }
 
-        </table>
+    render() {
+        return (
+            <div >
+                <table><thead><tr>
+                    {
+                        this.renderWeekDayShort()
+                    }
+                </tr></thead></table>
 
-      </div>
-  );
-  }
+            </div>
+        );
+    }
 }
 
 export default Calendar;

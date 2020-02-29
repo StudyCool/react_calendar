@@ -1,3 +1,19 @@
-.container{
+@import "src/components/styles/modules/color_variables";
+@import "src/components/styles/modules/template_classes";
+$button-height: 30px;
 
+.container{
+  @extend %centerContent;
+  @extend %button;
+  height: $button-height;
+  border-radius: $button-height/2;
+  border: 1px solid $grey-color;
+  text-transform: none;
+  color: $grey-color;
+  opacity: 0.5;
+  padding: 0 15px;
+}
+
+.container + .container{
+  margin-left: 6px;
 }
