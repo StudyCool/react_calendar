@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styles from './Calendar.module.scss';
 import moment from 'moment';
+import Month from "./Month";
 
 class Calendar extends Component {
     constructor(props) {
@@ -11,12 +12,13 @@ class Calendar extends Component {
         currentMonth: new Date(),
         selectedDate: new Date()
     };
-    onDateClick = day => {}
+    onDateClick = day => {
+    }
 
     renderWeekDayShort = () => {
         const weekDayShort = moment.weekdaysMin();
         const listWeekDays = weekDayShort.map((dayOfWeek) =>
-           <td key={dayOfWeek} className={styles.calendarHeader}>
+            <td key={dayOfWeek} className={styles.calendarHeader}>
                 {dayOfWeek.charAt(0)}
             </td>)
 
@@ -25,12 +27,17 @@ class Calendar extends Component {
 
     render() {
         return (
-            <div >
-                <table><thead><tr>
-                    {
-                        this.renderWeekDayShort()
-                    }
-                </tr></thead></table>
+            <div>
+                <table>
+                    <thead>
+                    <tr>
+                        {
+                            this.renderWeekDayShort()
+                        }
+                    </tr>
+                    </thead>
+                <tr><Month/></tr>
+                </table>
 
             </div>
         );
