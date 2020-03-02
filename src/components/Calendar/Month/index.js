@@ -2,50 +2,96 @@ import React, {Component} from 'react';
 import styles from './Month.module.scss';
 import moment from "moment";
 import Week from "../Week";
+import {render} from 'react-dom';
 
-/*class Month extends Component {
+class Month extends Component {
     constructor(props) {
         super(props);
+      super(props);
+    //  this.width = props.width || "320px";
+      this.style = props.style || {};
+      this.style.width = this.width; // add this
 
     }
+  state = {
+    dateContext: moment(),
+    today: moment(),
+    showMonthPopup: false,
+    showYearPopup: false,
+    selectedDay: null
+  }
 
-    renderMonth = () => {
-        let month = 5;
-        let daysOfMonth = [];
-//let i = moment().startOf(5); i <= moment().daysInMonth(5); i++
+  onDateClick = day => {
+  };
+  year = () => {
+    return this.state.moment.format('Y');
+  };
+  daysInMonth = () => {
+    return this.state.moment.daysInMonth();
+  };
 
-        for (let i = 1; i <= 31; i++) {
-            daysOfMonth = daysOfMonth.push(i);
-            console.log(daysOfMonth)
-        }
-        // console.log(daysOfMonth)
-        return daysOfMonth;
+  firstDayOfMonth = () => {
+    let firstDay = moment(this.state.moment).startOf('month').format('d');
+    return firstDay;
+  };
 
-    }
+  currentDay = () => {
+    return this.state.moment.format('D');
+  };
+  renderTotalSlots = () => {
+
+  };
 
     render() {
+      let blanks = [];
+      for (let i = 0; i < this.firstDayOfMonth(); i++) {
+        blanks.push(<td className="emptySlot">
+          {''}
+        </td>);
+      }
+
+
+      let daysInMonth = [];
+      for (let d = 1; d <= this.daysInMonth(); d++) {
+        let className = (d === this.currentDay() ? 'day currant-day' : 'day');
+        daysInMonth.push(
+            <td key={d} className={className}>
+              <span>{d}</span>
+            </td>
+        );
+      }
+
+      let totalSlots = [...blanks, ...daysInMonth];
+      let rows = [];
+      let cells = [];
+
+      totalSlots.forEach((row, i) => {
+        if ((i % 7) !== 0) {
+          cells.push(row);
+        } else {
+          let insertRow = cells.slice();
+          rows.push(insertRow);
+          cells = [];
+          cells.push(row);
+        }
+        if (i === totalSlots.length - 1) {
+          let insertRow = cells.slice();
+          rows.push(insertRow);
+        }
+      });
+      let trItems = rows.map((d, i) => {
         return (
-            <div>
+            <tr key={i * 100}>{d}</tr>
+        );
+      });
+        return (
+            <>
                 {
-                    this.renderMonth()
+                    this.renderTotalSlots()
                 }
-            </div>
+            </>
 
         );
     }
-}*/
-let month = "June";
-const firstMonthDay = moment().startOf("month");
-console.log(firstMonthDay);
-
-const Month = (month) => {
-    return (
-        <div>
-            {
-
-            }
-        </div>
-    );
-};
-
+}
 export default Month;
