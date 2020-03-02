@@ -6,7 +6,6 @@ import {render} from 'react-dom';
 
 class Month extends Component {
     constructor(props) {
-        super(props);
       super(props);
     //  this.width = props.width || "320px";
       this.style = props.style || {};
@@ -21,23 +20,66 @@ class Month extends Component {
     selectedDay: null
   }
 
-  onDateClick = day => {
-  };
   year = () => {
-    return this.state.moment.format('Y');
-  };
+    return this.state.dateContext.format("Y");
+  }
+  month = () => {
+    return this.state.dateContext.format("MMMM");
+  }
   daysInMonth = () => {
-    return this.state.moment.daysInMonth();
-  };
+    return this.state.dateContext.daysInMonth();
+  }
+  currentDate = () => {
+    console.log("currentDate: ", this.state.dateContext.get("date"));
+    return this.state.dateContext.get("date");
+  }
+  currentDay = () => {
+    return this.state.dateContext.format("D");
+  }
 
   firstDayOfMonth = () => {
-    let firstDay = moment(this.state.moment).startOf('month').format('d');
+    let dateContext = this.state.dateContext;
+    let firstDay = moment(dateContext).startOf('month').format('d'); // Day of week 0...1..5...6
     return firstDay;
-  };
+  }
 
-  currentDay = () => {
-    return this.state.moment.format('D');
-  };
+  setMonth = (month) => {
+    let monthNo = this.months.indexOf(month);
+    let dateContext = Object.assign({}, this.state.dateContext);
+    dateContext = moment(dateContext).set("month", monthNo);
+    this.setState({
+      dateContext: dateContext
+    });
+  }
+
+  nextMonth = () => {
+    let dateContext = Object.assign({}, this.state.dateContext);
+    dateContext = moment(dateContext).add(1, "month");
+    this.setState({
+      dateContext: dateContext
+    });
+    this.props.onNextMonth && this.props.onNextMonth();
+  }
+
+  prevMonth = () => {
+    let dateContext = Object.assign({}, this.state.dateContext);
+    dateContext = moment(dateContext).subtract(1, "month");
+    this.setState({
+      dateContext: dateContext
+    });
+    this.props.onPrevMonth && this.props.onPrevMonth();
+  }
+
+  onDayClick = (e, day) => {
+    this.setState({
+      selectedDay: day
+    }, () => {
+      console.log("SELECTED DAY: ", this.state.selectedDay);
+    });
+
+    this.props.onDayClick && this.props.onDayClick(e, day);
+  }
+
   renderTotalSlots = () => {
 
   };
@@ -45,21 +87,27 @@ class Month extends Component {
     render() {
       let blanks = [];
       for (let i = 0; i < this.firstDayOfMonth(); i++) {
-        blanks.push(<td className="emptySlot">
-          {''}
-        </td>);
-      }
-
-
-      let daysInMonth = [];
-      for (let d = 1; d <= this.daysInMonth(); d++) {
-        let className = (d === this.currentDay() ? 'day currant-day' : 'day');
-        daysInMonth.push(
-            <td key={d} className={className}>
-              <span>{d}</span>
+        blanks.push(<td key={i * 80} className="emptySlot">
+              {""}
             </td>
         );
       }
+
+      console.log("blanks: ", blanks);
+
+      let daysInMonth = [];
+      for (let d = 1; d <= this.daysInMonth(); d++) {
+        let className = (d == this.currentDay() ? "day current-day": "day");
+        let selectedClass = (d == this.state.selectedDay ? " selected-day " : "")
+        daysInMonth.push(
+            <td key={d} className={className + selectedClass} >
+              <span onClick={(e)=>{this.onDayClick(e, d)}}>{d}</span>
+            </td>
+        );
+      }
+
+
+      console.log("days: ", daysInMonth);
 
       let totalSlots = [...blanks, ...daysInMonth];
       let rows = [];
@@ -79,17 +127,21 @@ class Month extends Component {
           rows.push(insertRow);
         }
       });
-      let trItems = rows.map((d, i) => {
+
+      let trElems = rows.map((d, i) => {
         return (
-            <tr key={i * 100}>{d}</tr>
+            <tr key={i*100}>
+              {d}
+            </tr>
         );
-      });
-        return (
-            <>
+      })
+
+      return (
+            <td>
                 {
-                    this.renderTotalSlots()
+                    trElems
                 }
-            </>
+            </td>
 
         );
     }

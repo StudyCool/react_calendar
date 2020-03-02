@@ -33,9 +33,9 @@ state = {
               }
             </tr>
             </thead>
-            <tbody><tr>
+            <tbody>
            <Month/>
-            </tr></tbody>
+          </tbody>
 
           </table>
 
