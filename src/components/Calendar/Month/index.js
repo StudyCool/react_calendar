@@ -20,13 +20,7 @@ class Month extends Component {
     selectedDay: null
   }
 
-  year = () => {
-    return this.state.dateContext.format("Y");
-  }
-  month = () => {
-    return this.state.dateContext.format("MMMM");
-  }
-  daysInMonth = () => {
+   daysInMonth = () => {
     return this.state.dateContext.daysInMonth();
   }
   currentDate = () => {
@@ -41,33 +35,6 @@ class Month extends Component {
     let dateContext = this.state.dateContext;
     let firstDay = moment(dateContext).startOf('month').format('d'); // Day of week 0...1..5...6
     return firstDay;
-  }
-
-  setMonth = (month) => {
-    let monthNo = this.months.indexOf(month);
-    let dateContext = Object.assign({}, this.state.dateContext);
-    dateContext = moment(dateContext).set("month", monthNo);
-    this.setState({
-      dateContext: dateContext
-    });
-  }
-
-  nextMonth = () => {
-    let dateContext = Object.assign({}, this.state.dateContext);
-    dateContext = moment(dateContext).add(1, "month");
-    this.setState({
-      dateContext: dateContext
-    });
-    this.props.onNextMonth && this.props.onNextMonth();
-  }
-
-  prevMonth = () => {
-    let dateContext = Object.assign({}, this.state.dateContext);
-    dateContext = moment(dateContext).subtract(1, "month");
-    this.setState({
-      dateContext: dateContext
-    });
-    this.props.onPrevMonth && this.props.onPrevMonth();
   }
 
   onDayClick = (e, day) => {
@@ -97,11 +64,11 @@ class Month extends Component {
 
       let daysInMonth = [];
       for (let d = 1; d <= this.daysInMonth(); d++) {
-        let className = (d == this.currentDay() ? "day current-day": "day");
-        let selectedClass = (d == this.state.selectedDay ? " selected-day " : "")
+        let className = (d === this.currentDay() ? "day current-day": "day");
+        let selectedClass = (d === this.state.selectedDay ? " selected-day " : "")
         daysInMonth.push(
             <td key={d} className={className + selectedClass} >
-              <span onClick={(e)=>{this.onDayClick(e, d)}}>{d}</span>
+          {d}
             </td>
         );
       }
@@ -137,11 +104,11 @@ class Month extends Component {
       })
 
       return (
-            <td>
+            <>
                 {
                     trElems
                 }
-            </td>
+            </>
 
         );
     }

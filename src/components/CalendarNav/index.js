@@ -10,6 +10,7 @@ class CalendarNav extends Component {
         super(props);
         this.state = {
             isMenuOpen: false,
+            month: moment().format('MMMM')
         };
     }
 
@@ -19,12 +20,16 @@ class CalendarNav extends Component {
         });
     };
 
-    nextMonth = () => {
-        moment().add(1, 'M').format('DD-MM-YYYY');
-    }
+
+        nextMonth = () => {
+            console.log(moment().add(1, 'M').format('MMM'));
+        }
+
+
+
 
     prevMonth = () => {
-        moment().subtract(1, 'M').format('DD-MM-YYYY');
+        moment().subtract(1, 'M').format('MMM');
     }
 
     render() {
@@ -34,10 +39,10 @@ class CalendarNav extends Component {
             <div className={styles.container}>
                 <nav className={styles.navContainer}>
                     <div className={styles.navItem} onClick={this.prevMonth}>May</div>
-                    <div className={styles.currentItem} onClick={this.openMenu}>June
+                    <div className={styles.currentItem} onClick={this.openMenu}>{this.state.month}
                         <Icon path={mdiChevronDown} size={'24px'} color={'white'} rotate={isMenuOpen ? 180 : 0}/>
                     </div>
-                    <div className={styles.navItem} onClick={this.nextMonth}>Jul</div>
+                    <div className={styles.navItem} onClick={this.nextMonth}>{this.nextMonth()}</div>
                 </nav>
                 {
                     isMenuOpen && (
