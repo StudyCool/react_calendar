@@ -38,11 +38,11 @@ class CalendarNav extends Component {
         return (
             <div className={styles.container}>
                 <nav className={styles.navContainer}>
-                    <div className={styles.navItem} onClick={this.prevMonth}>May</div>
+                    <div className={styles.navItem} onClick={this.prevMonth}>Feb</div>
                     <div className={styles.currentItem} onClick={this.openMenu}>{this.state.month}
                         <Icon path={mdiChevronDown} size={'24px'} color={'white'} rotate={isMenuOpen ? 180 : 0}/>
                     </div>
-                    <div className={styles.navItem} onClick={this.nextMonth}>{this.nextMonth()}</div>
+                    <div className={styles.navItem} onClick={this.nextMonth}>Apr</div>
                 </nav>
                 {
                     isMenuOpen && (
